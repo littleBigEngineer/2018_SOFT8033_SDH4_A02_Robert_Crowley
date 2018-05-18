@@ -53,7 +53,7 @@ def my_main(dataset_dir, result_dir, percentage_f):
   
   average_review = inputRDD.count()/reducedRDD.count()
   
-  filteredRDD = sortedRDD.filter(lambda x:  filter(x, average_review, percentage_f))
+  filteredRDD = reducedRDD.filter(lambda x:  filter(x, average_review, percentage_f))
   sortMapRDD = filteredRDD.map(lambda x: order(x))
   outputRDD = sortMapRDD.sortBy(lambda x: -x[1][3])
   
